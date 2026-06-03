@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xephora: Neural Strategy Nexus</title>
+  <meta name="description" content="Enter Xephora, the elite cyber-tech neural strategy nexus for progressive mind challenges, adaptive AI training, and multiplayer intellectual arenas.">
+  <!-- Google Fonts: Orbitron for titles, Inter for high-tech body readability -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Screen 1: Splash Screen -->
+  <div id="splash-screen" class="splash-container">
+    <div class="splash-background-overlay"></div>
+    <div class="splash-content">
+      <div class="splash-logo-wrapper">
+        <svg class="splash-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00f0ff" />
+              <stop offset="50%" stop-color="#7000ff" />
+              <stop offset="100%" stop-color="#ff007b" />
+            </linearGradient>
+            <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <path d="M 50 10 L 85 30 L 85 70 L 50 90 L 15 70 L 15 30 Z" fill="none" stroke="url(#neonGrad)" stroke-width="4" filter="url(#neonGlow)"/>
+          <path d="M 50 25 L 72 38 L 72 62 L 50 75 L 28 62 L 28 38 Z" fill="none" stroke="url(#neonGrad)" stroke-width="2"/>
+          <line x1="50" y1="10" x2="50" y2="25" stroke="url(#neonGrad)" stroke-width="2" />
+          <line x1="85" y1="30" x2="72" y2="38" stroke="url(#neonGrad)" stroke-width="2" />
+          <line x1="85" y1="70" x2="72" y2="62" stroke="url(#neonGrad)" stroke-width="2" />
+          <line x1="50" y1="90" x2="50" y2="75" stroke="url(#neonGrad)" stroke-width="2" />
+          <line x1="15" y1="70" x2="28" y2="62" stroke="url(#neonGrad)" stroke-width="2" />
+          <line x1="15" y1="30" x2="28" y2="38" stroke="url(#neonGrad)" stroke-width="2" />
+          <circle cx="50" cy="50" r="8" fill="url(#neonGrad)" />
+        </svg>
+      </div>
+      <h1 class="splash-title">XEPHORA</h1>
+      <p class="splash-subtitle">NEURAL STRATEGY NEXUS</p>
+      
+      <div class="loader-track">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-text" id="loader-text">ESTABLISHING SYNAPTIC LINK... 0%</div>
+      
+      <button id="enter-nexus-btn" class="cyber-btn disabled" disabled>
+        <span class="btn-glow"></span>
+        <span class="btn-text">ENTER NEXUS</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Reactive Neural Particles Background -->
+  <canvas id="neural-bg"></canvas>
+  <div class="hologram-grid-overlay"></div>
+
+  <!-- Central Interface Layout Shell -->
+  <div id="nexus-app" class="app-layout hidden">
+    
+    <!-- Cyber Sidebar Navigation -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 10 L 85 30 L 85 70 L 50 90 L 15 70 L 15 30 Z" fill="none" stroke="#00f0ff" stroke-width="6" />
+            <circle cx="50" cy="50" r="15" fill="#7000ff" />
+          </svg>
+          <span class="logo-text">XEPHORA</span>
+        </div>
+        <button class="sidebar-toggle-btn" id="sidebar-toggle" aria-label="Toggle Sidebar">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- Module 1: The Portals -->
+        <div class="nav-group">
+          <div class="nav-group-title">PORTAL MODULES</div>
+          <a href="#" class="nav-item active" data-screen="screen-hero">
+            <span class="nav-icon">⚡</span><span class="nav-label">Hero Landing</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-about">
+            <span class="nav-icon">👁️</span><span class="nav-label">About Nexus</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-why">
+            <span class="nav-icon">🔬</span><span class="nav-label">Why Xephora</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-hub">
+            <span class="nav-icon">⛩️</span><span class="nav-label">Game Modes Hub</span>
+          </a>
+        </div>
+
+        <!-- Module 2: Gaming Arenas (Playable) -->
+        <div class="nav-group">
+          <div class="nav-group-title">GAMING ARENAS</div>
+          <a href="#" class="nav-item" data-screen="screen-memory">
+            <span class="nav-icon">🧠</span><span class="nav-label">Memory Nexus</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-logic">
+            <span class="nav-icon">🧩</span><span class="nav-label">Logic Arena</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-number">
+            <span class="nav-icon">🔢</span><span class="nav-label">Number Rush</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-strategy">
+            <span class="nav-icon">🛡️</span><span class="nav-label">Strategy Zone</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-multiplayer">
+            <span class="nav-icon">📡</span><span class="nav-label">Multiplayer Arena</span>
+          </a>
+        </div>
+
+        <!-- Module 3: AI & Analytics -->
+        <div class="nav-group">
+          <div class="nav-group-title">COGNITIVE ENGINE</div>
+          <a href="#" class="nav-item" data-screen="screen-ai">
+            <span class="nav-icon">🌐</span><span class="nav-label">AI Neural Engine</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-dashboard">
+            <span class="nav-icon">📊</span><span class="nav-label">Player Dashboard</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-analytics">
+            <span class="nav-icon">📈</span><span class="nav-label">Skill Analytics</span>
+          </a>
+        </div>
+
+        <!-- Module 4: competitive & community -->
+        <div class="nav-group">
+          <div class="nav-group-title">GLOBAL LEAGUES</div>
+          <a href="#" class="nav-item" data-screen="screen-leaderboard">
+            <span class="nav-icon">🏆</span><span class="nav-label">Leaderboard</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-rewards">
+            <span class="nav-icon">🎖️</span><span class="nav-label">Achievements</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-community">
+            <span class="nav-icon">👥</span><span class="nav-label">Community Hub</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-tournament">
+            <span class="nav-icon">⚔️</span><span class="nav-label">Tournaments</span>
+          </a>
+        </div>
+
+        <!-- Module 5: Support & Shop -->
+        <div class="nav-group">
+          <div class="nav-group-title">SYSTEM PROTOCOLS</div>
+          <a href="#" class="nav-item" data-screen="screen-plans">
+            <span class="nav-icon">💎</span><span class="nav-label">Premium Plans</span>
+          </a>
+          <a href="#" class="nav-item" data-screen="screen-faq">
+            <span class="nav-icon">💬</span><span class="nav-label">FAQ & Support</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Sidebar Player Briefing -->
+      <div class="sidebar-user-brief">
+        <div class="user-brief-avatar">
+          <div class="avatar-glow"></div>
+          <span class="avatar-initials">XP</span>
+        </div>
+        <div class="user-brief-info">
+          <div class="user-brief-name">OPERATOR_X</div>
+          <div class="user-brief-rank">SYNAPTIC LEVEL 24</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Content Frame -->
+    <main class="content-frame">
+      <header class="top-nav-bar">
+        <div class="top-nav-search">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search Nexus nodes..." aria-label="Search">
+        </div>
+        <div class="top-nav-actions">
+          <div class="live-ping">
+            <span class="ping-dot"></span>
+            <span class="ping-text">NEXUS LATENCY: 12ms</span>
+          </div>
+          <button class="nav-action-btn notification-btn" id="notif-btn" title="System Notifications">
+            🔔<span class="badge-count">3</span>
+          </button>
+          <button class="cyber-btn primary mini-btn" id="top-play-btn">
+            <span class="btn-text">QUICK START</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="viewports-container">
+        
+        <!-- Screen 2: Hero Landing Page -->
+        <section id="screen-hero" class="nexus-screen active">
+          <div class="hero-split-grid">
+            <div class="hero-text-block">
+              <div class="cyber-badge">SYSTEM VERSION 2.0.6 ONLINE</div>
+              <h2 class="hero-glitch-title" data-text="XEPHORA">XEPHORA</h2>
+              <h3 class="hero-subheading">Neural Strategy Nexus for Progressive Mind Challenges and Intelligent Gameplay</h3>
+              <p class="hero-desc">
+                Elevate your cognitive matrix. Engage in highly adaptive tactical grid battles, sequential memory challenges, logical decryption networks, and compete inside global multiplayer brain lobbies designed to evolve human neural flexibility.
+              </p>
+              <div class="hero-actions">
+                <button class="cyber-btn primary action-play-now">
+                  <span class="btn-glow"></span>
+                  <span class="btn-text">PLAY NOW</span>
+                </button>
+                <button class="cyber-btn secondary action-explore">
+                  <span class="btn-text">EXPLORE NEXUS</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="hero-visual-block">
+              <div class="hologram-core-container">
+                <div class="hologram-ring outer"></div>
+                <div class="hologram-ring middle"></div>
+                <div class="hologram-ring inner"></div>
+                <div class="hologram-brain">
+                  <!-- Holographic neural SVG icon -->
+                  <svg width="220" height="220" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="3" fill="#00f0ff" />
+                    <!-- Left Hemisphere -->
+                    <path d="M 50 15 C 30 15, 20 25, 20 50 C 20 70, 35 85, 50 85" fill="none" stroke="#7000ff" stroke-width="2" stroke-dasharray="2, 2"/>
+                    <path d="M 50 25 C 38 25, 30 35, 30 50 C 30 65, 38 75, 50 75" fill="none" stroke="#00f0ff" stroke-width="1.5"/>
+                    <circle cx="30" cy="50" r="4" fill="#00f0ff" class="pulse-glow-dot"/>
+                    <circle cx="20" cy="40" r="2.5" fill="#7000ff"/>
+                    <circle cx="38" cy="30" r="3" fill="#00f0ff"/>
+                    <circle cx="35" cy="70" r="3" fill="#ff007b"/>
+                    <!-- Right Hemisphere -->
+                    <path d="M 50 15 C 70 15, 80 25, 80 50 C 80 70, 65 85, 50 85" fill="none" stroke="#7000ff" stroke-width="2" stroke-dasharray="2, 2"/>
+                    <path d="M 50 25 C 62 25, 70 35, 70 50 C 70 65, 62 75, 50 75" fill="none" stroke="#ff007b" stroke-width="1.5"/>
+                    <circle cx="70" cy="50" r="4" fill="#ff007b" class="pulse-glow-dot"/>
+                    <circle cx="80" cy="60" r="2.5" fill="#7000ff"/>
+                    <circle cx="62" cy="30" r="3" fill="#00f0ff"/>
+                    <circle cx="65" cy="70" r="3" fill="#00f0ff"/>
+                    <!-- Synapses connections -->
+                    <line x1="30" y1="50" x2="50" y2="50" stroke="#00f0ff" stroke-width="1" />
+                    <line x1="70" y1="50" x2="50" y2="50" stroke="#ff007b" stroke-width="1" />
+                    <line x1="38" y1="30" x2="62" y2="30" stroke="#7000ff" stroke-width="0.75" />
+                    <line x1="35" y1="70" x2="65" y2="70" stroke="#7000ff" stroke-width="0.75" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-scroll-indicator">
+            <div class="mouse-icon"><span class="mouse-wheel"></span></div>
+            <div class="scroll-label">SCROLL DOWN TO REVEAL DEEPER SCHEMATICS</div>
+          </div>
+        </section>
+
+        <!-- Screen 3: About Xephora -->
+        <section id="screen-about" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">ABOUT THE NEURAL SYSTEM</h2>
+            <p class="section-subtitle">Pioneering the intersection of artificial intelligence and cognitive flexibility.</p>
+          </div>
+          
+          <div class="about-flex-layout">
+            <div class="about-card-left glass-card">
+              <h3>Our Core Vision</h3>
+              <p>
+                Founded under the directive of designing software capable of accelerating synaptic plasticity, Xephora acts as a training nexus. We believe gaming shouldn't just be passive entertainment; it should challenge strategic foresight, numerical indexing, visual memory patterns, and spatial awareness.
+              </p>
+              <div class="stat-highlight-row">
+                <div class="stat-box">
+                  <div class="stat-num neon-blue">14.8%</div>
+                  <div class="stat-label">Average Cognitive Increase</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-num neon-violet">12M+</div>
+                  <div class="stat-label">Tactical Scenarios Played</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="about-card-right glass-card">
+              <h3>The Neural Strategy Concept</h3>
+              <p>
+                Unlike rigid games, Xephora uses dynamic feedback loops to alter game conditions in real-time. By profiling players' reaction speeds, search heuristics, and mathematical indexing, the environment scales task complexity to remain perfectly targeted at peak learning thresholds.
+              </p>
+              <div class="tech-schematics">
+                <div class="schematic-item">
+                  <span class="tech-icon">👁️‍🗨️</span>
+                  <div>
+                    <strong>Brain-Computer Adaptation:</strong> Translates visual tracking and clicking metrics into cognitive profiles.
+                  </div>
+                </div>
+                <div class="schematic-item">
+                  <span class="tech-icon">🧠</span>
+                  <div>
+                    <strong>Synaptic Plasticity Focus:</strong> Maximizes mental growth vectors through multi-domain strategic missions.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 4: Why Xephora -->
+        <section id="screen-why" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">WHY ENGAGE THE XEPHORA NEXUS?</h2>
+            <p class="section-subtitle">Engineered benefits that strengthen your real-world analytical vectors.</p>
+          </div>
+
+          <div class="benefits-grid">
+            <div class="benefit-card glass-card">
+              <div class="benefit-icon">🧠</div>
+              <h4>Accelerated Brain Development</h4>
+              <p>Simulating complex sequential recalls stimulates neurogenesis in the hippocampus, improving daily memory retention models.</p>
+              <ul class="benefit-list">
+                <li>Higher working memory recall rate</li>
+                <li>Enhanced spatial layout storage</li>
+                <li>Superior focus levels under pressure</li>
+              </ul>
+            </div>
+
+            <div class="benefit-card glass-card">
+              <div class="benefit-icon">🛡️</div>
+              <h4>Strategic Adaptability</h4>
+              <p>Teaches tactical planning, risk mitigation, and rapid option evaluation. Apply gamified strategy paradigms directly to real-world workflows.</p>
+              <ul class="benefit-list">
+                <li>Multi-stage decision modeling</li>
+                <li>Optimized resource utilization skills</li>
+                <li>Heuristic search expansion modeling</li>
+              </ul>
+            </div>
+
+            <div class="benefit-card glass-card">
+              <div class="benefit-icon">🧩</div>
+              <h4>Logical Decryption</h4>
+              <p>Enhance deductive reasoning arrays. Synthesize patterns from highly ambiguous, fragmented data profiles with deep logical inference.</p>
+              <ul class="benefit-list">
+                <li>Rapid pattern recognition metrics</li>
+                <li>Deconstruction of complex datasets</li>
+                <li>Strategic hypothesis formulation</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 5: Game Modes Hub -->
+        <section id="screen-hub" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">THE GAME MODES HUB</h2>
+            <p class="section-subtitle">Engage distinct neurological modules designed for targeting specific skill matrices.</p>
+          </div>
+
+          <div class="modes-hub-grid">
+            <div class="mode-card glass-card" data-target="screen-memory">
+              <div class="mode-card-badge">MEMORY UNIT</div>
+              <h4>Memory Nexus</h4>
+              <p>Test sequential recall and spatial mapping. Repeat glowing synaptic sequences in real-time under intense temporal limits.</p>
+              <div class="mode-card-footer">
+                <span class="mode-stat">ACTIVE NODES: 9</span>
+                <span class="mode-action-link">LAUNCH ARENA →</span>
+              </div>
+            </div>
+
+            <div class="mode-card glass-card" data-target="screen-logic">
+              <div class="mode-card-badge">DEDUCTION UNIT</div>
+              <h4>Logic Arena</h4>
+              <p>Decrypt locked security grids. Decode binary configurations using logic, clues, and neural hints supplied by Xephora's AI.</p>
+              <div class="mode-card-footer">
+                <span class="mode-stat">DIFFICULTY: HIGH</span>
+                <span class="mode-action-link">LAUNCH ARENA →</span>
+              </div>
+            </div>
+
+            <div class="mode-card glass-card" data-target="screen-number">
+              <div class="mode-card-badge">INDEXING UNIT</div>
+              <h4>Number Rush</h4>
+              <p>Reorder scrambled dimensional matrices. Drag tiles to reorganize sequence loops before structural cooling fails.</p>
+              <div class="mode-card-footer">
+                <span class="mode-stat">PLAYABLE GRID: 4x4</span>
+                <span class="mode-action-link">LAUNCH ARENA →</span>
+              </div>
+            </div>
+
+            <div class="mode-card glass-card" data-target="screen-strategy">
+              <div class="mode-card-badge">TACTICAL UNIT</div>
+              <h4>Strategy Zone</h4>
+              <p>Face tactical neural nodes. Pitch coordinates against intelligent AI systems to claim global dominion sectors.</p>
+              <div class="mode-card-footer">
+                <span class="mode-stat">AI OPPONENTS: 5</span>
+                <span class="mode-action-link">LAUNCH ARENA →</span>
+              </div>
+            </div>
+
+            <div class="mode-card glass-card" data-target="screen-multiplayer">
+              <div class="mode-card-badge text-neon-pink">LIVE BATTLES</div>
+              <h4>Multiplayer Arena</h4>
+              <p>Clash with operators worldwide. Join active matchmaking lobbies or create team battle rooms instantly.</p>
+              <div class="mode-card-footer">
+                <span class="mode-stat">ONLINE USERS: 42k</span>
+                <span class="mode-action-link">LAUNCH ARENA →</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 6: Memory Challenge Page (Playable Simon Says) -->
+        <section id="screen-memory" class="nexus-screen">
+          <div class="game-view-layout">
+            <div class="game-control-panel glass-card">
+              <span class="game-badge">COGNITIVE MODULE 01</span>
+              <h3>Memory Nexus</h3>
+              <p class="game-desc">Repeat the sequential glowing flash pattern generated by the neural core. Do not break the chain.</p>
+              
+              <div class="game-stats-container">
+                <div class="game-stat-item">
+                  <span class="gstat-lbl">CURRENT LEVEL</span>
+                  <span class="gstat-val text-neon-blue" id="mem-level">Level 1</span>
+                </div>
+                <div class="game-stat-item">
+                  <span class="gstat-lbl">HIGHEST STREAK</span>
+                  <span class="gstat-val text-neon-violet" id="mem-best">0</span>
+                </div>
+              </div>
+
+              <div class="difficulty-group">
+                <label>Nexus Matrix Core</label>
+                <div class="difficulty-selectors">
+                  <button class="diff-btn active" data-grid="4">2x2 Core</button>
+                  <button class="diff-btn" data-grid="9">3x3 Matrix</button>
+                </div>
+              </div>
+
+              <button class="cyber-btn primary full-width" id="start-memory-btn">
+                <span class="btn-text">INITIATE SEQUENCE</span>
+              </button>
+              
+              <div class="game-instruction-alert" id="mem-message">
+                CLICK "INITIATE" TO BEGIN MEMORY PATTERN LOADING.
+              </div>
+            </div>
+
+            <div class="game-display-panel glass-card">
+              <div class="memory-grid-wrapper">
+                <div class="memory-grid grid-2x2" id="memory-grid-board">
+                  <!-- Generated dynamic buttons via JS -->
+                  <div class="memory-node" data-index="0"></div>
+                  <div class="memory-node" data-index="1"></div>
+                  <div class="memory-node" data-index="2"></div>
+                  <div class="memory-node" data-index="3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 7: Logic Challenge Page (Playable Guessing Terminal) -->
+        <section id="screen-logic" class="nexus-screen">
+          <div class="game-view-layout">
+            <div class="game-control-panel glass-card">
+              <span class="game-badge">COGNITIVE MODULE 02</span>
+              <h3>Logic Arena</h3>
+              <p class="game-desc">Decrypt the locked mainframe. Find the correct 4-digit code (numbers 1-9, no duplicates). Correct numbers in correct spots give "HIT" (Green). Correct numbers in wrong spots give "NEAR" (Orange).</p>
+              
+              <div class="game-stats-container">
+                <div class="game-stat-item">
+                  <span class="gstat-lbl">GUESSES LEFT</span>
+                  <span class="gstat-val text-neon-blue" id="logic-attempts">8</span>
+                </div>
+                <div class="game-stat-item">
+                  <span class="gstat-lbl">AI ASSISTANCE</span>
+                  <span class="gstat-val text-neon-violet" id="logic-hints-count">3 Left</span>
+                </div>
+              </div>
+
+              <div class="logic-inputs-row">
+                <input class="logic-input-cell" type="text" maxlength="1" id="l-input-1" placeholder="•" pattern="[1-9]" aria-label="Digit 1">
+                <input class="logic-input-cell" type="text" maxlength="1" id="l-input-2" placeholder="•" pattern="[1-9]" aria-label="Digit 2">
+                <input class="logic-input-cell" type="text" maxlength="1" id="l-input-3" placeholder="•" pattern="[1-9]" aria-label="Digit 3">
+                <input class="logic-input-cell" type="text" maxlength="1" id="l-input-4" placeholder="•" pattern="[1-9]" aria-label="Digit 4">
+              </div>
+
+              <div class="action-buttons-stack">
+                <button class="cyber-btn primary full-width" id="submit-guess-btn">
+                  <span class="btn-text">TRANSMIT DECRYPT PASS</span>
+                </button>
+                <div class="secondary-btns-row">
+                  <button class="cyber-btn secondary half-width" id="logic-hint-btn">
+                    <span class="btn-text">REQUEST HINT</span>
+                  </button>
+                  <button class="cyber-btn secondary half-width" id="reset-logic-btn">
+                    <span class="btn-text">RE-KEY CORE</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="ai-hints-panel glass-card inner-card">
+                <div class="ai-panel-title">🧠 SYNAPTIC ADVISOR:</div>
+                <p id="logic-advisor-text">Awaiting transmission. Enter your 4-digit guess using digits 1-9 to trigger system profiling feedback loop.</p>
+              </div>
+            </div>
+
+            <div class="game-display-panel glass-card flex-column">
+              <h4 class="terminal-heading">DECRYPTION TRANSMISSION HISTORY</h4>
+              <div class="logic-history-container" id="logic-history-log">
+                <div class="history-placeholder">NO DECRYPTION GUESSES RECORDED. SYSTEM IS SECURED.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 8: Number Arrangement Challenge (Playable Sliding 15-Puzzle) -->
+        <section id="screen-number" class="nexus-screen">
+          <div class="game-view-layout">
+            <div class="game-control-panel glass-card">
+              <span class="game-badge">COGNITIVE MODULE 03</span>
+              <h3>Number Rush</h3>
+              <p class="game-desc">Reorganize the digital numbers matrix into ascending order (1-15). Drag or click squares bordering the blank portal to slide them.</p>
+              
+              <div class="game-stats-container">
+                <div class="game-stat-item">
+                  <span class="gstat-lbl">MOVE ARRAY</span>
+                  <span class="gstat-val text-neon-blue" id="puzzle-moves">0</span>
+                </div>
+                <div class="game-stat-item">
+                  <span class="gstat-lbl">TIMER VECTOR</span>
+                  <span class="gstat-val text-neon-violet" id="puzzle-timer">00:00</span>
+                </div>
+              </div>
+
+              <button class="cyber-btn primary full-width" id="scramble-puzzle-btn">
+                <span class="btn-text">SHUFFLE DATA BLOCK</span>
+              </button>
+              
+              <div class="game-instruction-alert" id="puzzle-feedback">
+                RECONSTRUCT THE 1 TO 15 GRID MATRIX.
+              </div>
+            </div>
+
+            <div class="game-display-panel glass-card">
+              <div class="puzzle-board-container">
+                <div class="puzzle-grid" id="puzzle-grid-board">
+                  <!-- 16 cells created dynamically in JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 9: Strategy Mission Arena -->
+        <section id="screen-strategy" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">TACTICAL STRATEGY ZONE</h2>
+            <p class="section-subtitle">Deploy strategies against deep-learning neural engines targeting spatial sectors.</p>
+          </div>
+
+          <div class="strategy-arena-layout">
+            <div class="missions-deck">
+              <div class="mission-card glass-card active" data-opponent="NEURAL-V1" data-difficulty="Novice">
+                <div class="mission-header">
+                  <span class="mission-status active">AVAILABLE</span>
+                  <span class="mission-xp">+500 XP</span>
+                </div>
+                <h4>Sector Orion Breach</h4>
+                <p>Deploy standard blockade arrays to contain adaptive AI probes. Perfect for baseline strategic calibration.</p>
+                <div class="mission-specs">
+                  <span>OPPONENT: NEURAL-V1</span>
+                  <span>DIFFICULTY: NOVICE</span>
+                </div>
+              </div>
+
+              <div class="mission-card glass-card" data-opponent="KRONOS-V5" data-difficulty="Advanced">
+                <div class="mission-header">
+                  <span class="mission-status locked">REQUIRES Lvl 10</span>
+                  <span class="mission-xp">+1,200 XP</span>
+                </div>
+                <h4>Helios Core Firewall</h4>
+                <p>Break through the multi-node distributed network blockades defended by a predictive Kronos engine.</p>
+                <div class="mission-specs">
+                  <span>OPPONENT: KRONOS-V5</span>
+                  <span>DIFFICULTY: EXPERT</span>
+                </div>
+              </div>
+
+              <div class="mission-card glass-card" data-opponent="ZEPH-PREDICT" data-difficulty="Insane">
+                <div class="mission-header">
+                  <span class="mission-status locked">REQUIRES Lvl 20</span>
+                  <span class="mission-xp">+3,500 XP</span>
+                </div>
+                <h4>Omega Nexus Conquest</h4>
+                <p>An absolute war of attrition. Engage the unconstrained adaptive matrix modeling human mistakes before they happen.</p>
+                <div class="mission-specs">
+                  <span>OPPONENT: ZEPH-PREDICT</span>
+                  <span>DIFFICULTY: OMEGA</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mission-preview-details glass-card">
+              <div class="preview-hologram-wrapper">
+                <div class="tactical-mesh-svg">
+                  <!-- Cyber map illustration -->
+                  <svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#7000ff" stroke-width="0.5" stroke-dasharray="2, 2" />
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="#00f0ff" stroke-width="0.5" />
+                    <line x1="50" y1="5" x2="50" y2="95" stroke="#ff007b" stroke-width="0.25" />
+                    <line x1="5" y1="50" x2="95" y2="50" stroke="#ff007b" stroke-width="0.25" />
+                    <polygon points="50,20 65,55 35,55" fill="rgba(0, 240, 255, 0.2)" stroke="#00f0ff" stroke-width="1" />
+                    <circle cx="50" cy="20" r="3" fill="#ff007b" />
+                    <circle cx="65" cy="55" r="3" fill="#00f0ff" />
+                    <circle cx="35" cy="55" r="3" fill="#7000ff" />
+                  </svg>
+                </div>
+              </div>
+              
+              <div class="preview-specs-info">
+                <h3>OPPONENT SIMULATION MATRIX</h3>
+                <div class="profile-row">
+                  <div class="profile-avatar-sub">AI</div>
+                  <div>
+                    <h4 id="opp-name">NEURAL-V1</h4>
+                    <p class="text-neon-blue" id="opp-diff">COGNITIVE COMPONENT: BASAL TACTICS</p>
+                  </div>
+                </div>
+                
+                <div class="param-bars">
+                  <div class="param-bar-item">
+                    <div class="param-label">Pace Adaptation</div>
+                    <div class="param-track"><div class="param-fill" style="width: 40%"></div></div>
+                  </div>
+                  <div class="param-bar-item">
+                    <div class="param-label">Tactical Predictive Index</div>
+                    <div class="param-track"><div class="param-fill" style="width: 35%"></div></div>
+                  </div>
+                </div>
+
+                <button class="cyber-btn primary full-width" id="launch-tactical-match">
+                  <span class="btn-text">ENGAGE SIMULATED MATRIX</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 10: Multiplayer Nexus -->
+        <section id="screen-multiplayer" class="nexus-screen">
+          <div class="multiplayer-dashboard-layout">
+            <div class="lobby-control-panel glass-card">
+              <span class="game-badge">MULTIPLAYER ROUTER</span>
+              <h3>Live Battle Rooms</h3>
+              <p>Forge mental alliances or challenge global competitors in real-time synchronized rooms.</p>
+              
+              <div class="lobby-stats">
+                <div class="lstat-box">
+                  <div class="lstat-val">3,129</div>
+                  <div class="lstat-lbl">Active Match Rooms</div>
+                </div>
+                <div class="lstat-box">
+                  <div class="lstat-val text-neon-blue" id="matchmaker-timer">OFFLINE</div>
+                  <div class="lstat-lbl">Matchmaking Status</div>
+                </div>
+              </div>
+
+              <div class="multiplayer-forms">
+                <button class="cyber-btn primary full-width" id="quick-match-btn">
+                  <span class="btn-text">INITIATE MATCHMAKING</span>
+                </button>
+                <div class="form-row">
+                  <button class="cyber-btn secondary half-width" id="create-room-btn">Create Room</button>
+                  <button class="cyber-btn secondary half-width" id="join-room-btn">Join Private</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lobby-list-panel glass-card">
+              <h4>SYNCHRONIZED ROOM DIRECTORY</h4>
+              <div class="lobby-table-wrapper">
+                <table class="cyber-table">
+                  <thead>
+                    <tr>
+                      <th>Room ID</th>
+                      <th>Game Node</th>
+                      <th>Challengers</th>
+                      <th>Lobby Ping</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lobby-rooms-body">
+                    <tr>
+                      <td>#TURING-239</td>
+                      <td>Memory Nexus</td>
+                      <td>1 / 2</td>
+                      <td class="text-neon-blue">14ms</td>
+                      <td><button class="cyber-btn mini-btn primary join-room-trigger">JOIN</button></td>
+                    </tr>
+                    <tr>
+                      <td>#QUANTUM-902</td>
+                      <td>Number Rush</td>
+                      <td>3 / 4</td>
+                      <td class="text-neon-violet">28ms</td>
+                      <td><button class="cyber-btn mini-btn primary join-room-trigger">JOIN</button></td>
+                    </tr>
+                    <tr>
+                      <td>#COGNITIVE-44</td>
+                      <td>Logic Arena</td>
+                      <td>1 / 2</td>
+                      <td class="text-neon-blue">11ms</td>
+                      <td><button class="cyber-btn mini-btn primary join-room-trigger">JOIN</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 11: AI Neural Engine -->
+        <section id="screen-ai" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">ADAPTIVE NEURAL COGNITIVE ENGINE</h2>
+            <p class="section-subtitle">Deep analytics regarding the adaptive system and active difficulty adjustment engine.</p>
+          </div>
+
+          <div class="ai-engine-split">
+            <div class="ai-card-details glass-card">
+              <h3>Synaptic Tracking Dynamics</h3>
+              <p>
+                The Xephora Engine works by modeling human strategic profiles against recursive Bayesian estimators. As you interact with key cognitive puzzles, the engine maps your specific skill levels across distinct modules.
+              </p>
+              
+              <div class="engine-slider-block">
+                <label for="difficulty-slider" class="slider-label">
+                  <span>Engine Adaptation Threshold</span>
+                  <span id="slider-val">75% (Adaptive)</span>
+                </label>
+                <input type="range" min="10" max="100" value="75" class="cyber-slider" id="difficulty-slider">
+              </div>
+
+              <div class="ai-recommendation-box glass-card inner-card">
+                <h5>🤖 CHIP RECOMMENDATION ENGINE</h5>
+                <p id="ai-rec-text">Based on your dynamic reaction matrix, we recommend strengthening your spatial memory arrays in <strong>Memory Nexus</strong>.</p>
+                <button class="cyber-btn secondary mini-btn" id="generate-rec-btn">RE-EVALUATE COGNITIVE DYNAMICS</button>
+              </div>
+            </div>
+
+            <div class="ai-card-visual glass-card">
+              <h4>DYNAMIC ADAPTATION MATRIX</h4>
+              <div class="matrix-canvas-wrapper">
+                <svg viewBox="0 0 100 100" class="engine-vector-svg">
+                  <!-- Cyber engine graphic -->
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#7000ff" stroke-width="1"/>
+                  <circle cx="50" cy="50" r="30" fill="none" stroke="#00f0ff" stroke-width="0.5" stroke-dasharray="5,5"/>
+                  <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" fill="none" stroke="#ff007b" stroke-width="1.5" class="rotating-polygon"/>
+                  <path d="M 50 20 L 50 80 M 20 50 L 80 50" stroke="#00f0ff" stroke-width="0.5"/>
+                  <circle cx="50" cy="50" r="10" fill="#000" stroke="#00f0ff" stroke-width="2"/>
+                  <circle cx="50" cy="50" r="4" fill="#00f0ff" class="pulse-glow-dot"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 12: Player Dashboard -->
+        <section id="screen-dashboard" class="nexus-screen">
+          <div class="dashboard-header-stats">
+            <div class="db-user-profile glass-card">
+              <div class="user-avatar-large">
+                <div class="avatar-glow"></div>
+                <span>XP</span>
+              </div>
+              <div class="user-details-large">
+                <h2>OPERATOR_X</h2>
+                <p class="role-badge">NEURAL COMMANDER</p>
+                <div class="xp-level-track">
+                  <div class="xp-labels">
+                    <span>XP progress: 7,420 / 10,000</span>
+                    <span>Lvl 24</span>
+                  </div>
+                  <div class="xp-bar-container">
+                    <div class="xp-bar-fill" style="width: 74.2%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="stats-counter-grid">
+              <div class="stat-count-card glass-card">
+                <span class="count-num text-neon-blue">142</span>
+                <span class="count-label">CHALLENGES SOLVED</span>
+              </div>
+              <div class="stat-count-card glass-card">
+                <span class="count-num text-neon-violet">8,650</span>
+                <span class="count-label">RANKING SCORE</span>
+              </div>
+              <div class="stat-count-card glass-card">
+                <span class="count-num text-neon-pink">92%</span>
+                <span class="count-label">DECISION ACCURACY</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-details-split">
+            <div class="dashboard-goals-panel glass-card">
+              <h3>DAILY PROTOCOLS</h3>
+              <div class="goals-list">
+                <div class="goal-item completed">
+                  <input type="checkbox" checked disabled id="g-1">
+                  <label for="g-1">Solve 3 logic arena challenges <span class="goal-xp">+200 XP</span></label>
+                </div>
+                <div class="goal-item">
+                  <input type="checkbox" id="g-2">
+                  <label for="g-2">Achieve level 7 streak in Memory Nexus <span class="goal-xp">+450 XP</span></label>
+                </div>
+                <div class="goal-item">
+                  <input type="checkbox" id="g-3">
+                  <label for="g-3">Complete 1 sliding puzzle in under 2 minutes <span class="goal-xp">+300 XP</span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-analytics-brief glass-card">
+              <h3>RECENT PERFORMANCES</h3>
+              <ul class="performance-list">
+                <li>
+                  <span class="perf-node memory">M</span>
+                  <div class="perf-info">
+                    <strong>Memory Nexus: Level 6 reached</strong>
+                    <span class="perf-date">2 hours ago</span>
+                  </div>
+                  <span class="perf-score">+120 pts</span>
+                </li>
+                <li>
+                  <span class="perf-node logic">L</span>
+                  <div class="perf-info">
+                    <strong>Logic Decryption Mainframe Solved</strong>
+                    <span class="perf-date">Yesterday</span>
+                  </div>
+                  <span class="perf-score">+350 pts</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 13: Skill Analytics Screen -->
+        <section id="screen-analytics" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">COGNITIVE SKILL ANALYTICS</h2>
+            <p class="section-subtitle">Real-time telemetry measuring synaptic performance indexes across core training vectors.</p>
+          </div>
+
+          <div class="analytics-flex-grid">
+            <div class="radar-chart-card glass-card">
+              <h4>COGNITIVE BALANCE RATINGS</h4>
+              <div class="custom-chart-container">
+                <!-- Skill bars with neon gradient coloring -->
+                <div class="skill-meter-item">
+                  <div class="skill-hdr">
+                    <span>VISUAL SEQUENCE RECALL (MEMORY)</span>
+                    <span class="text-neon-blue">82%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill neon-blue" style="width: 82%"></div></div>
+                </div>
+
+                <div class="skill-meter-item">
+                  <div class="skill-hdr">
+                    <span>MATHEMATICAL SPATIAL SPEED (SPEED)</span>
+                    <span class="text-neon-violet">68%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill neon-violet" style="width: 68%"></div></div>
+                </div>
+
+                <div class="skill-meter-item">
+                  <div class="skill-hdr">
+                    <span>DEDUCTIVE COGNITIVE MATRIX (LOGIC)</span>
+                    <span class="text-neon-pink">94%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill neon-pink" style="width: 94%"></div></div>
+                </div>
+
+                <div class="skill-meter-item">
+                  <div class="skill-hdr">
+                    <span>STRATEGIC COORDINATION MODEL (STRATEGY)</span>
+                    <span class="text-neon-green">75%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill neon-green" style="width: 75%"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="growth-timeline-card glass-card">
+              <h4>GROWTH VECTOR TIMELINE</h4>
+              <div class="vector-timeline-svg-wrapper">
+                <!-- Glowing trendline graph in SVG -->
+                <svg viewBox="0 0 400 150" class="trendline-svg" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                      <stop offset="0%" stop-color="rgba(0, 240, 255, 0)" />
+                      <stop offset="100%" stop-color="rgba(0, 240, 255, 0.25)" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Gridlines -->
+                  <line x1="20" y1="20" x2="380" y2="20" stroke="#ffffff" stroke-width="0.1" stroke-dasharray="5,5"/>
+                  <line x1="20" y1="70" x2="380" y2="70" stroke="#ffffff" stroke-width="0.1" stroke-dasharray="5,5"/>
+                  <line x1="20" y1="120" x2="380" y2="120" stroke="#ffffff" stroke-width="0.1" stroke-dasharray="5,5"/>
+                  <!-- Graphic line path -->
+                  <path d="M 20 120 Q 80 110, 140 85 T 260 55 T 380 30" fill="none" stroke="#00f0ff" stroke-width="3" filter="url(#neonGlow)"/>
+                  <path d="M 20 120 Q 80 110, 140 85 T 260 55 T 380 30 L 380 130 L 20 130 Z" fill="url(#chartGrad)" />
+                  <!-- Data Dots -->
+                  <circle cx="20" cy="120" r="4" fill="#ff007b" />
+                  <circle cx="140" cy="85" r="4" fill="#7000ff" />
+                  <circle cx="260" cy="55" r="4" fill="#00f0ff" />
+                  <circle cx="380" cy="30" r="4" fill="#00f0ff" class="pulse-glow-dot" />
+                </svg>
+              </div>
+              <div class="timeline-labels">
+                <span>WEEK 1</span>
+                <span>WEEK 2</span>
+                <span>WEEK 3</span>
+                <span>ACTIVE PHASE</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 14: Leaderboard -->
+        <section id="screen-leaderboard" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">GLOBAL SYNAPTIC LEADERBOARD</h2>
+            <p class="section-subtitle">Compare performance indexes against elite operators across the network.</p>
+          </div>
+
+          <div class="leaderboard-tabs-wrapper">
+            <div class="leaderboard-toggle-buttons">
+              <button class="lead-tab-btn active" id="lead-global-btn">GLOBAL SECTOR</button>
+              <button class="lead-tab-btn" id="lead-regional-btn">LOCAL SUBNET</button>
+            </div>
+            
+            <div class="leaderboard-table-container glass-card">
+              <table class="cyber-table rankings-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Operator</th>
+                    <th>Subnet Division</th>
+                    <th>Synaptic Score</th>
+                    <th>Achievements</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard-rows">
+                  <tr class="top-ranker rank-1">
+                    <td><span class="rank-badge">🏆 1</span></td>
+                    <td>
+                      <div class="operator-profile-cell">
+                        <span class="op-avatar">🎴</span>
+                        <strong>KAIRO_SYSTEMS</strong>
+                      </div>
+                    </td>
+                    <td>NEURAL-WEST-4</td>
+                    <td class="text-neon-blue">142,650</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                  </tr>
+                  <tr class="top-ranker rank-2">
+                    <td><span class="rank-badge">🥈 2</span></td>
+                    <td>
+                      <div class="operator-profile-cell">
+                        <span class="op-avatar">🎭</span>
+                        <strong>DIVERGENT_MIND</strong>
+                      </div>
+                    </td>
+                    <td>EUROPE-SHORE-12</td>
+                    <td class="text-neon-violet">139,400</td>
+                    <td>⭐⭐⭐⭐</td>
+                  </tr>
+                  <tr class="top-ranker rank-3">
+                    <td><span class="rank-badge">🥉 3</span></td>
+                    <td>
+                      <div class="operator-profile-cell">
+                        <span class="op-avatar">🔮</span>
+                        <strong>SYNAPTIC_LORD</strong>
+                      </div>
+                    </td>
+                    <td>ASIA-PACIFIC-09</td>
+                    <td class="text-neon-pink">133,120</td>
+                    <td>⭐⭐⭐⭐</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      <div class="operator-profile-cell">
+                        <span class="op-avatar">🤖</span>
+                        <strong>NULL_VECTOR</strong>
+                      </div>
+                    </td>
+                    <td>AMERICA-CENTRAL-01</td>
+                    <td>112,850</td>
+                    <td>⭐⭐⭐</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>
+                      <div class="operator-profile-cell">
+                        <span class="op-avatar">🤠</span>
+                        <strong>OPERATOR_X</strong>
+                      </div>
+                    </td>
+                    <td>LOCAL-WORKSPACE</td>
+                    <td class="text-neon-blue">88,650</td>
+                    <td>⭐⭐⭐</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 15: Rewards & Achievements -->
+        <section id="screen-rewards" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">REWARDS & ACHIEVEMENTS</h2>
+            <p class="section-subtitle">Unlock cognitive credentials and upgrade badges as you solve critical system nodes.</p>
+          </div>
+
+          <div class="achievements-dashboard-grid">
+            <div class="achievement-card glass-card unlocked">
+              <div class="ach-icon-container">
+                <span class="ach-emoji">⚡</span>
+                <div class="ach-glow-circle"></div>
+              </div>
+              <div class="ach-details">
+                <h4>First Synchronization</h4>
+                <p>Successfully completed the Splash Loading validation sequence.</p>
+                <div class="ach-status-badge unlocked">UNLOCKED</div>
+              </div>
+            </div>
+
+            <div class="achievement-card glass-card unlocked" id="ach-memory-master">
+              <div class="ach-icon-container">
+                <span class="ach-emoji">🧠</span>
+                <div class="ach-glow-circle"></div>
+              </div>
+              <div class="ach-details">
+                <h4>Sequential Master</h4>
+                <p>Reach Level 5 in the Memory Nexus sequence game.</p>
+                <div class="ach-status-badge unlocked" id="ach-mem-lbl">UNLOCKED</div>
+              </div>
+            </div>
+
+            <div class="achievement-card glass-card locked" id="ach-logic-decrypter">
+              <div class="ach-icon-container">
+                <span class="ach-emoji">🧩</span>
+                <div class="ach-glow-circle"></div>
+              </div>
+              <div class="ach-details">
+                <h4>Synaptic Decoder</h4>
+                <p>Decrypt the Logic Mainframe in fewer than 4 attempts.</p>
+                <div class="ach-status-badge locked" id="ach-log-lbl">LOCKED</div>
+              </div>
+            </div>
+
+            <div class="achievement-card glass-card locked" id="ach-number-speedrun">
+              <div class="ach-icon-container">
+                <span class="ach-emoji">🔢</span>
+                <div class="ach-glow-circle"></div>
+              </div>
+              <div class="ach-details">
+                <h4>Arrangement Speedster</h4>
+                <p>Solve the sliding puzzle in less than 30 moves.</p>
+                <div class="ach-status-badge locked" id="ach-num-lbl">LOCKED</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 16: Community Hub -->
+        <section id="screen-community" class="nexus-screen">
+          <div class="community-split-layout">
+            <div class="community-left-feed glass-card">
+              <h3>COGNITIVE FEED</h3>
+              <div class="posts-feed-container">
+                <div class="feed-post-card glass-card inner-card">
+                  <div class="post-header">
+                    <span class="post-user">USER_KAIRO</span>
+                    <span class="post-time">20 minutes ago</span>
+                  </div>
+                  <p class="post-content">Just broke past level 12 in the Memory Nexus! The visual grids become exponentially dense at that scale. Anyone have optimization tips for memorization?</p>
+                  <div class="post-actions">
+                    <button class="post-action-btn">👍 14 Likes</button>
+                    <button class="post-action-btn">💬 3 Replies</button>
+                  </div>
+                </div>
+
+                <div class="feed-post-card glass-card inner-card">
+                  <div class="post-header">
+                    <span class="post-user">OPERATOR_X</span>
+                    <span class="post-time">3 hours ago</span>
+                  </div>
+                  <p class="post-content">Configuring my AI recommendation engine parameters. Seeing huge cognitive balance gains by focusing on Logic Arena decryption puzzles!</p>
+                  <div class="post-actions">
+                    <button class="post-action-btn">👍 8 Likes</button>
+                    <button class="post-action-btn">💬 1 Reply</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="community-right-friends glass-card">
+              <h3>SYNAPTIC DIRECTORY</h3>
+              
+              <div class="friends-directory-list">
+                <div class="friend-row online">
+                  <span class="friend-dot"></span>
+                  <span class="friend-name">DIVERGENT_MIND</span>
+                  <button class="cyber-btn primary mini-btn action-challenge-friend">CHALLENGE</button>
+                </div>
+                <div class="friend-row online">
+                  <span class="friend-dot"></span>
+                  <span class="friend-name">SYNAPTIC_LORD</span>
+                  <button class="cyber-btn primary mini-btn action-challenge-friend">CHALLENGE</button>
+                </div>
+                <div class="friend-row offline">
+                  <span class="friend-dot"></span>
+                  <span class="friend-name">NULL_VECTOR</span>
+                  <span class="offline-tag">OFFLINE</span>
+                </div>
+              </div>
+
+              <div class="community-event-box glass-card inner-card">
+                <h5>🏆 UPCOMING COMMUNITY SYNC</h5>
+                <p><strong>Neural Blitz Marathon</strong> starts in 3 hours. Standard level metrics apply.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 17: Tournament Page -->
+        <section id="screen-tournament" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">ACTIVE STRATEGIC TOURNAMENTS</h2>
+            <p class="section-subtitle">Register for grand synchronized strategy circuits and conquer the ultimate bracket nodes.</p>
+          </div>
+
+          <div class="tournament-layout">
+            <div class="tournament-info-column glass-card">
+              <span class="game-badge">MEGA EVENT</span>
+              <h3>Grand Neural Invitational</h3>
+              <p>Clash inside synchronized multiplayer lobbies. High-speed decryption, memory triggers, and tactical arrays determine brackets.</p>
+              
+              <div class="countdown-bracket glass-card inner-card">
+                <h5>EVENT INITIATION TIMER:</h5>
+                <div id="tournament-timer" class="countdown-digits text-neon-blue">02d : 14h : 44m : 05s</div>
+              </div>
+
+              <div class="prize-pool-box">
+                <span class="prize-lbl">NET PRIZE MATRIX:</span>
+                <span class="prize-val text-neon-pink">$50,000 NEURAL CREDITS</span>
+              </div>
+
+              <button class="cyber-btn primary full-width" id="register-tournament-btn">
+                <span class="btn-text">REGISTER SECURE LINK</span>
+              </button>
+            </div>
+
+            <div class="tournament-bracket-column glass-card">
+              <h4>SYNAPTIC BRACKET ROUTING</h4>
+              <div class="brackets-wire-grid">
+                <div class="bracket-node">
+                  <div class="bracket-team win">KAIRO_SYSTEMS</div>
+                  <div class="bracket-team">DIVERGENT_MIND</div>
+                </div>
+                <div class="bracket-node-wire"></div>
+                <div class="bracket-node">
+                  <div class="bracket-team">OPERATOR_X</div>
+                  <div class="bracket-team win">SYNAPTIC_LORD</div>
+                </div>
+                <div class="bracket-connector-wire"></div>
+                <div class="bracket-node final">
+                  <div class="bracket-team">KAIRO_SYSTEMS</div>
+                  <div class="bracket-team">SYNAPTIC_LORD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 18: Subscription / Premium Plans -->
+        <section id="screen-plans" class="nexus-screen">
+          <div class="section-header-block">
+            <h2 class="neon-title">SUBNET UPGRADE PLANS</h2>
+            <p class="section-subtitle">Upgrade your visual logic and training channels. Tap into our unconstrained predictive AI grids.</p>
+          </div>
+
+          <div class="pricing-cards-grid">
+            <div class="pricing-card glass-card">
+              <div class="price-header">
+                <h3>FREE VECTOR</h3>
+                <div class="price-val">0<span>/month</span></div>
+              </div>
+              <ul class="price-features-list">
+                <li>Access to all standard puzzle game modes</li>
+                <li>Basic cognitive analytics profiling</li>
+                <li>1 live matchmaking portal lobby</li>
+                <li>Standard loading and latency speeds</li>
+              </ul>
+              <button class="cyber-btn secondary full-width" disabled>CURRENT SECURE MATRIX</button>
+            </div>
+
+            <div class="pricing-card glass-card popular">
+              <div class="price-header">
+                <div class="popular-ribbon">RECOMMENDED</div>
+                <h3>NEURAL PLUS</h3>
+                <div class="price-val">$15<span>/month</span></div>
+              </div>
+              <ul class="price-features-list">
+                <li>Unlimited adaptive AI training iterations</li>
+                <li>Comprehensive Cognitive Balance reports</li>
+                <li>Access to exclusive logic arenas</li>
+                <li>Advanced AI Hint features activated</li>
+                <li>Double XP unlock accelerator</li>
+              </ul>
+              <button class="cyber-btn primary full-width checkout-trigger" data-plan="NEURAL PLUS" data-price="$15">
+                <span class="btn-text">INITIATE PLUS GATEWAY</span>
+              </button>
+            </div>
+
+            <div class="pricing-card glass-card">
+              <div class="price-header">
+                <h3>QUANTUM EXECUTIVE</h3>
+                <div class="price-val">$49<span>/month</span></div>
+              </div>
+              <ul class="price-features-list">
+                <li>Full real-time tactical training systems</li>
+                <li>Pre-release beta game modes</li>
+                <li>Unlimited AI Chat Support integrations</li>
+                <li>Custom operator profiles and avatars</li>
+                <li>Direct bracket tournament entries</li>
+              </ul>
+              <button class="cyber-btn secondary full-width checkout-trigger" data-plan="QUANTUM EXECUTIVE" data-price="$49">
+                <span class="btn-text">INITIATE QUANTUM LINK</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screen 19: FAQ + Support (Interactive AI Chatbox) -->
+        <section id="screen-faq" class="nexus-screen">
+          <div class="faq-split-layout">
+            <div class="faq-accordion-panel glass-card">
+              <h3>SYSTEM FREQUENT QUESTIONS</h3>
+              
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>How does the Xephora AI Engine adapt difficulty?</span>
+                  <span class="arr">▼</span>
+                </button>
+                <div class="accordion-body">
+                  <p>Our adaptive model tracks standard metrics like error rates, sequential completion speeds, and visual heuristics. It feeds these variables into structural cognitive grids, shifting algorithms dynamically to maintain a targeted learning state.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Can I sync my ranking telemetry across platforms?</span>
+                  <span class="arr">▼</span>
+                </button>
+                <div class="accordion-body">
+                  <p>Yes. Your gaming logs and dashboard statistics are stored in your encrypted central workspace directory, ensuring cross-platform synchronization is instant.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-header">
+                  <span>Is premium matching required for tournaments?</span>
+                  <span class="arr">▼</span>
+                </button>
+                <div class="accordion-body">
+                  <p>No. Basic free accounts can qualify for regional loops by sustaining a 1,200+ indexing metric on standard global lobbies.</p>
+                </div>
+              </div>
+
+              <div class="support-ticket-form glass-card inner-card">
+                <h4>SUBMIT COGNITIVE ENVELOPE</h4>
+                <form id="support-form" onsubmit="event.preventDefault(); alert('Transmission secured. Ticket saved in workspace logs!');">
+                  <input type="email" placeholder="Operator Mail Connection" required class="form-input" aria-label="Email">
+                  <textarea placeholder="Outline system issue or cognitive anomaly..." required class="form-input" aria-label="Description"></textarea>
+                  <button type="submit" class="cyber-btn primary mini-btn">TRANSMIT TICKET</button>
+                </form>
+              </div>
+            </div>
+
+            <div class="faq-ai-chat-panel glass-card">
+              <h3>🤖 SYNAPTIC CHAT PROTOCOL</h3>
+              <p class="chat-desc text-neon-blue">Engage with our AI core directly. Ask about game features, tactical hints, or subnet protocols.</p>
+              
+              <div class="ai-chat-history" id="ai-chat-log">
+                <div class="chat-message system">
+                  <span class="sender">SYSTEM_CORE:</span>
+                  <p>Xephora Synaptic AI online. Command vector is ready. How may I optimize your strategy training today?</p>
+                </div>
+              </div>
+
+              <div class="ai-chat-input-row">
+                <input type="text" id="chat-input" placeholder="Query system core..." aria-label="AI Query">
+                <button class="cyber-btn primary mini-btn" id="send-chat-btn">
+                  <span class="btn-text">SEND</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Screen 20: Final CTA + Footer -->
+      <footer class="nexus-footer glass-card">
+        <div class="footer-cta-block">
+          <h2>ENTER THE NEURAL STRATEGY NEXUS</h2>
+          <p>Accelerate your synaptic potential. Solve puzzles, track analytics, and face human intellect.</p>
+          <button class="cyber-btn primary large-btn action-play-now">
+            <span class="btn-glow"></span>
+            <span class="btn-text">ENGAGE SYSTEM INSTANTLY</span>
+          </button>
+        </div>
+
+        <div class="footer-links-row">
+          <div class="footer-col">
+            <h5>XEPHORA NEURAL</h5>
+            <p>Elevating biological intelligence loops via high-fidelity cognitive gaming pipelines.</p>
+          </div>
+          <div class="footer-col">
+            <h5>NEXUS CHANNELS</h5>
+            <ul class="footer-links">
+              <li><a href="#" class="nav-trigger" data-target="screen-hero">Hero Terminal</a></li>
+              <li><a href="#" class="nav-trigger" data-target="screen-about">System Vision</a></li>
+              <li><a href="#" class="nav-trigger" data-target="screen-hub">Arenas Lobby</a></li>
+              <li><a href="#" class="nav-trigger" data-target="screen-plans">Subnet Subscriptions</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>NETWORKS</h5>
+            <div class="footer-social-icons">
+              <a href="#" class="social-icon" title="Discord Link">👾</a>
+              <a href="#" class="social-icon" title="Twitter/X Link">🐦</a>
+              <a href="#" class="social-icon" title="GitHub Link">🐙</a>
+              <a href="#" class="social-icon" title="Telegram Link">✈️</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>XEPHORA CORE © 2026. ALL SYNAPTIC RIGHTS RESERVED.</span>
+          <span>LATENCY: LOCAL_WORKSPACE</span>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Subscription/Premium Checkout Simulator Modal -->
+  <div id="checkout-modal" class="modal-backdrop hidden">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3>SECURE SUBNET PROPORTIONAL LINK</h3>
+        <button class="modal-close-btn" id="close-modal-btn">×</button>
+      </div>
+      <div class="modal-body">
+        <p>You are upgrading to <strong id="modal-plan-name" class="text-neon-blue">NEURAL PLUS</strong>.</p>
+        <div class="price-matrix-highlight" id="modal-plan-price">$15.00 / MONTH</div>
+        
+        <form class="checkout-form" id="checkout-payment-form" onsubmit="event.preventDefault();">
+          <div class="form-input-group">
+            <label>OPERATOR PROFILE</label>
+            <input type="text" value="OPERATOR_X" readonly class="modal-input" aria-label="Profile">
+          </div>
+          <div class="form-input-group">
+            <label>CREDENTIALS DECK CARD (MOCK)</label>
+            <input type="text" placeholder="4242 •••• •••• 4242" required class="modal-input" aria-label="Card Number">
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="MM/YY" required class="modal-input half" aria-label="Expiry">
+            <input type="password" placeholder="CVV" required class="modal-input half" aria-label="CVV">
+          </div>
+          <button type="submit" class="cyber-btn primary full-width" id="modal-submit-btn">
+            <span class="btn-text">AUTHORIZE QUANTUM ROUTE</span>
+          </button>
+        </form>
+        
+        <div class="secure-footer-badge">🔒 256-BIT ENCRYPTED QUANTUM LINK</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
