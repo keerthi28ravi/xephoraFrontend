@@ -1,0 +1,29 @@
+services:
+  # Express Backend Web Service
+  - type: web
+    name: xephora-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    rootDir: backend
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false # User will provide this connection string (e.g. from MongoDB Atlas)
+      - key: JWT_SECRET
+        generateValue: true # Render will automatically generate a secure 256-bit secret
+
+  # React Frontend Static Site
+  - type: web
+    name: xephora-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    rootDir: frontend
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: xephora-backend
+          property: url
