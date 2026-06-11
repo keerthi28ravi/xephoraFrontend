@@ -6,7 +6,20 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors()); // Allow cross-origin requests
+const allowedOrigins = [
+  'http://localhost:5173',       // Vite dev server
+  process.env.FRONTEND_URL,      // Render frontend URL (set automatically)
+].filter(Boolean);
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g. mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS blocked: ${origin}`));
+  },
+  credentials: true,
+}));
 app.use(express.json()); // Body parser
 
 // REST API Routes integration

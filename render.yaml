@@ -10,9 +10,14 @@ services:
       - key: PORT
         value: 5000
       - key: MONGODB_URI
-        sync: false # User will provide this connection string (e.g. from MongoDB Atlas)
+        sync: false # Paste your MongoDB Atlas connection string in Render dashboard
       - key: JWT_SECRET
-        generateValue: true # Render will automatically generate a secure 256-bit secret
+        generateValue: true # Render auto-generates a secure 256-bit secret
+      - key: FRONTEND_URL
+        fromService:
+          type: static
+          name: xephora-frontend
+          property: url
 
   # React Frontend Static Site
   - type: static
