@@ -15,9 +15,8 @@ services:
         generateValue: true # Render will automatically generate a secure 256-bit secret
 
   # React Frontend Static Site
-  - type: web
+  - type: static
     name: xephora-frontend
-    env: static
     buildCommand: npm install && npm run build
     publishDir: dist
     rootDir: frontend
