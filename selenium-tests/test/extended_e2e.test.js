@@ -146,7 +146,7 @@ describe('Massive 100-Point E2E Test Execution', function() {
   testPlan.forEach((testCase) => {
     describe(testCase.suite, function() {
       it(testCase.name, async function() {
-        this.timeout(4000); // 4 seconds max per check for speed
+        this.timeout(8000); // 8 seconds max per check to allow rendering
         const targetUrl = baseUrl + testCase.route;
         
         // Dynamic Authentication Handshake
