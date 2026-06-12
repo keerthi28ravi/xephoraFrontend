@@ -7,8 +7,10 @@ const app = express();
 
 // Middleware
 const allowedOrigins = [
-  'http://localhost:5173',       // Vite dev server
-  process.env.FRONTEND_URL,      // Render frontend URL (set automatically)
+  'http://localhost',             // Capacitor Android app
+  'http://localhost:5173',        // Vite dev server
+  'http://localhost:5174',        // Vite dev server (alt port)
+  process.env.FRONTEND_URL,       // Render frontend URL (set automatically)
 ].filter(Boolean);
 
 app.use(cors({
