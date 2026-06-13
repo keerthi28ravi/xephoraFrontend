@@ -109,7 +109,7 @@ const testPlan = [
 
 describe('Massive 100-Point E2E Test Execution', function() {
   let driver;
-  const baseUrl = 'http://localhost:5173';
+  const baseUrl = process.env.BASE_URL || 'http://localhost:5173';
   let loggedIn = false;
 
   before(async function() {

@@ -1,0 +1,87 @@
+name: Selenium Website E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  selenium-e2e:
+    name: Run Selenium E2E Tests & Generate Report
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout Code ──────────────────────────────────────────────────────
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # ── 2. Setup Node.js ──────────────────────────────────────────────────────
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ── 3. Install Backend & Start It ─────────────────────────────────────────
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Start Backend Server
+        working-directory: ./backend
+        env:
+          PORT: 5000
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        run: node server.js &
+
+      - name: Wait for Backend to be Ready
+        run: |
+          echo "Waiting for backend on port 5000..."
+          timeout 30 bash -c 'until curl -s http://localhost:5000/api/health > /dev/null 2>&1 || curl -s http://localhost:5000 > /dev/null 2>&1; do sleep 2; done'
+          echo "Backend is up!"
+
+      # ── 4. Install Frontend & Start Vite Dev Server ───────────────────────────
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Start Vite Dev Server
+        working-directory: ./frontend
+        env:
+          VITE_API_URL: http://localhost:5000
+        run: npm run dev &
+
+      - name: Wait for Frontend to be Ready
+        run: |
+          echo "Waiting for Vite frontend on port 5173..."
+          timeout 60 bash -c 'until curl -s http://localhost:5173 > /dev/null 2>&1; do sleep 2; done'
+          echo "Frontend is up!"
+
+      # ── 5. Setup Chrome for Selenium ──────────────────────────────────────────
+      - name: Setup Chrome Browser
+        uses: browser-actions/setup-chrome@v1
+
+      # ── 6. Install Selenium Test Dependencies ────────────────────────────────
+      - name: Install Selenium Test Dependencies
+        working-directory: ./selenium-tests
+        run: npm install
+
+      # ── 7. Run Selenium Tests (headless) ─────────────────────────────────────
+      - name: Run E2E Tests
+        working-directory: ./selenium-tests
+        env:
+          BASE_URL: http://localhost:5173
+          HEADLESS: 'true'
+        run: npm test
+        continue-on-error: true # Always generate the report even if tests fail
+
+      # ── 8. Upload Excel Report as Artifact ────────────────────────────────────
+      - name: Upload Excel Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Selenium-E2E-Report-${{ github.run_number }}
+          path: |
+            selenium-tests/E2E_Test_Report.xlsx
+            selenium-tests/E2E_Advanced_Report.xlsx
+          retention-days: 30
