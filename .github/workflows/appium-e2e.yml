@@ -1,0 +1,69 @@
+name: Android Appium E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: macos-latest # macOS runners have hardware acceleration (HAXM) enabled by default for Android emulators
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Install Frontend Dependencies & Build
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run build
+
+      - name: Sync Capacitor Android Project
+        working-directory: ./frontend
+        run: npx cap sync android
+
+      - name: Build Android APK
+        working-directory: ./frontend/android
+        run: ./gradlew assembleDebug
+
+      - name: Install Appium Dependencies
+        working-directory: ./appium-tests
+        run: npm install
+
+      - name: Install Appium & UiAutomator2 Driver
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Start Appium Server
+        run: appium --port 4723 --address 127.0.0.1 --allow-insecure uiautomator2:chromedriver_autodownload &
+        
+      - name: Run E2E Tests in Android Emulator
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: default
+          arch: x86_64
+          profile: pixel_6
+          script: |
+            cd appium-tests
+            npm test
+
+      - name: Upload Excel Test Report
+        if: always() # Upload the report even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: E2E_Mobile_Report
+          path: appium-tests/E2E_Mobile_Report.xlsx
