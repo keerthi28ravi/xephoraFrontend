@@ -8,10 +8,48 @@ const adbPath = process.env.ANDROID_HOME
   : 'C:\\Users\\Raja\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe';
 const APP_PACKAGE = 'com.xephora.app';
 const APP_ACTIVITY = '.MainActivity';
+const os = require('os');
 
-// ── Machine WiFi IP — physical device will navigate to this host ──────────
-// Update this if your PC's WiFi IP changes (run: ipconfig / Get-NetIPAddress)
-const PC_IP = '10.197.170.45';
+// Dynamically resolve local IPv4 address (excluding virtual machine interfaces)
+function getLocalIP() {
+  const interfaces = os.networkInterfaces();
+  
+  // Try to find WiFi/Ethernet interface first
+  for (const name of Object.keys(interfaces)) {
+    for (const net of interfaces[name]) {
+      if (net.family === 'IPv4' && !net.internal) {
+        const lowerName = name.toLowerCase();
+        if (lowerName.includes('wifi') || lowerName.includes('wireless') || lowerName.includes('ethernet') || lowerName.includes('wlan')) {
+          return net.address;
+        }
+      }
+    }
+  }
+
+  // Exclude typical VMware subnet hosts (192.168.20.x, 192.168.50.x)
+  for (const name of Object.keys(interfaces)) {
+    for (const net of interfaces[name]) {
+      if (net.family === 'IPv4' && !net.internal) {
+        if (!net.address.startsWith('192.168.20.') && !net.address.startsWith('192.168.50.')) {
+          return net.address;
+        }
+      }
+    }
+  }
+
+  // General fallback
+  for (const name of Object.keys(interfaces)) {
+    for (const net of interfaces[name]) {
+      if (net.family === 'IPv4' && !net.internal) {
+        return net.address;
+      }
+    }
+  }
+  return '127.0.0.1';
+}
+
+const PC_IP = getLocalIP();
+console.log(`[AppiumSetup] Detected local PC IP for testing: ${PC_IP}`);
 
 function runAdb(...args) {
   try {
