@@ -2,7 +2,7 @@ services:
   # Express Backend Web Service
   - type: web
     name: xephora-backend
-    env: node
+    runtime: node
     buildCommand: npm install
     startCommand: node server.js
     rootDir: backend
@@ -20,8 +20,9 @@ services:
           property: url
 
   # React Frontend Static Site
-  - type: static
+  - type: web
     name: xephora-frontend
+    runtime: static
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     rootDir: frontend
