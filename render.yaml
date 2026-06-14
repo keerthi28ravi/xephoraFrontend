@@ -3,6 +3,7 @@ services:
   - type: web
     name: xephora-backend
     runtime: node
+    plan: free
     buildCommand: npm install
     startCommand: node server.js
     rootDir: backend
